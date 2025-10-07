@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR" id="trocas-page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco-Folia - Sistema de Trocas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="trocas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="logo.png" alt="Eco-Folia Logo">
+        <h1>Eco-Folia</h1>
+      </div>
+
+      <div class="header-right">
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html#hero">Início</a></li>
+            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+            <li><a href="index.html#fantasias">Fantasias</a></li>
+            <li><a href="trocas.html" class="active">Trocas</a></li>
+            <li><a href="index.html#avaliacoes">Avaliações</a></li>
+          </ul>
+        </nav>
+
+        <div class="auth-status" id="authStatus">
+          <!-- Será preenchido via JavaScript -->
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section id="sistema-trocas-hero">
+    <div class="container">
+      <h1>Sistema de Trocas Sustentáveis</h1>
+      <p>Encontre a fantasia perfeita através de trocas conscientes e ajude a reduzir o desperdício</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Botão para adicionar nova fantasia -->
+    <div class="add-fantasia-section">
+      <button class="btn primary" id="btnAddFantasia">
+        <i class="fas fa-plus"></i> Anunciar Minha Fantasia
+      </button>
+    </div>
+
+    <div class="trocas-filtros-container">
+      <div class="search-bar-trocas">
+        <input type="text" class="search-input" placeholder="Buscar por nome, descrição ou localização...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
+
+      <div class="filtros-avancados">
+        <div class="filtros-header" id="filtrosToggle">
+          <h3>Filtros Avançados</h3>
+          <i class="fas fa-chevron-down filtros-toggle"></i>
+        </div>
+        <div class="filtros-content" id="filtrosContent">
+          <div class="filtros-group">
+            <label for="categoria">Categoria:</label>
+            <select id="categoria">
+              <option value="">Todas as Categorias</option>
+              <option value="animal">Animal</option>
+              <option value="super-heroi">Super-Herói</option>
+              <option value="carnaval">Carnaval</option>
+              <option value="filmes">Filmes & Séries</option>
+              <option value="historico">Histórico</option>
+            </select>
+          </div>
+
+          <div class="filtros-group">
+            <label for="tamanho">Tamanho:</label>
+            <select id="tamanho">
+              <option value="">Todos os Tamanhos</option>
+              <option value="pp">INFANTIL</option>
+              <option value="p">ADOLESCENTE</option>
+              <option value="m">ADULTO M</option>
+              <option value="g">ADULTO G</option>
+              <option value="gg">ADULTO GG</option>
+            </select>
+          </div>
+
+          <div class="filtros-group">
+            <label for="estado">Estado:</label>
+            <select id="estado">
+              <option value="">Todos os Estados</option>
+              <option value="sp">São Paulo</option>
+              <option value="rj">Rio de Janeiro</option>
+              <option value="ba">Bahia</option>
+              <option value="mg">Minas Gerais</option>
+              <option value="rs">Rio Grande do Sul</option>
+            </select>
+          </div>
+
+          <div class="filtros-group">
+            <label for="condicao">Condição:</label>
+            <select id="condicao">
+              <option value="">Todas as Condições</option>
+              <option value="nova">Nova</option>
+              <option value="pouco-uso">Pouco Usada</option>
+              <option value="usada">Usada</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO DE TROCAS REMOVIDA AQUI -->
+
+    <div class="trocas-lista" id="trocasLista">
+      <!-- Conteúdo dinâmico será inserido aqui via JavaScript -->
+    </div>
+
+    <div class="paginacao" id="paginacao">
+      <!-- Paginação será gerada via JavaScript -->
+    </div>
+  </div>
+
+  <!-- Modal de Solicitação de Troca -->
+  <div class="modal" id="modalSolicitacao">
+    <div class="modal-content modal-solicitacao">
+      <div class="modal-header">
+        <h3>Solicitar Troca</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>Você está solicitando trocar <strong id="modalFantasiaOferecida">sua fantasia</strong> por <strong id="modalFantasiaDesejada">a fantasia selecionada</strong>.</p>
+        <p>Deseja enviar uma mensagem para o anunciante?</p>
+        <textarea id="mensagemTroca" placeholder="Olá, gostaria de propor esta troca..." rows="4"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn secondary" id="cancelarSolicitacao">Cancelar</button>
+        <button class="btn primary" id="confirmarSolicitacao">Enviar Solicitação</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Adicionar Fantasia -->
+  <div class="modal" id="modalAddFantasia">
+    <div class="modal-content modal-anuncio">
+      <div class="modal-header">
+        <h3>Anunciar Minha Fantasia</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="formAddFantasia">
+          <div class="form-group">
+            <label for="fantasiaTitulo">Título da Fantasia:</label>
+            <input type="text" id="fantasiaTitulo" placeholder="Ex: Fantasia de Super-Herói Reciclada" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaDescricao">Descrição:</label>
+            <textarea id="fantasiaDescricao" placeholder="Descreva sua fantasia, materiais utilizados, condição, etc." rows="4" required></textarea>
+          </div>
+          
+          <div class="form-group">
+      <label for="fantasiaImagem">Imagem da Fantasia:</label>
+      <input type="file" id="fantasiaImagem" accept="image/*" required style="display: none;">
+      <div class="image-upload-container">
+          <div class="image-upload-area" id="imageUploadArea">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Clique para selecionar uma imagem</p>
+              <span>ou arraste e solte aqui</span>
+              <small>Formatos: JPG, PNG, GIF (Máx. 5MB)</small>
+          </div>
+          <div class="image-preview" id="imagePreview" style="display: none;">
+              <img id="previewImg" src="#" alt="Preview">
+              <button type="button" class="btn-remove-image" id="removeImage">
+                  <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
+          
+          <div class="form-group">
+            <label for="fantasiaCategoria">Categoria:</label>
+            <select id="fantasiaCategoria" required>
+              <option value="">Selecione uma categoria</option>
+              <option value="animal">Animal</option>
+              <option value="super-heroi">Super-Herói</option>
+              <option value="carnaval">Carnaval</option>
+              <option value="filmes">Filmes & Séries</option>
+              <option value="historico">Histórico</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaTamanho">Tamanho:</label>
+            <select id="fantasiaTamanho" required>
+              <option value="">Selecione um tamanho</option>
+              <option value="pp">INFANTIL</option>
+              <option value="p">ADOLESCENTE</option>
+              <option value="m">ADULTO M</option>
+              <option value="g">ADULTO G</option>
+              <option value="gg">ADULTO GG</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaEstado">Estado:</label>
+            <select id="fantasiaEstado" required>
+              <option value="">Selecione um estado</option>
+              <option value="sp">São Paulo</option>
+              <option value="rj">Rio de Janeiro</option>
+              <option value="ba">Bahia</option>
+              <option value="mg">Minas Gerais</option>
+              <option value="rs">Rio Grande do Sul</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaCondicao">Condição:</label>
+            <select id="fantasiaCondicao" required>
+              <option value="">Selecione a condição</option>
+              <option value="nova">Nova</option>
+              <option value="pouco-uso">Pouco Usada</option>
+              <option value="usada">Usada</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaTrocaPor">Desejo trocar por:</label>
+            <input type="text" id="fantasiaTrocaPor" placeholder="Ex: Fantasia de Carnaval, Animal, etc." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="fantasiaLocalizacao">Sua Localização (Cidade/Estado):</label>
+            <input type="text" id="fantasiaLocalizacao" placeholder="Ex: São Paulo, SP" required>
+          </div>
+
+          <button type="submit" class="btn primary full-width">
+            <i class="fas fa-plus-circle"></i> Anunciar Fantasia
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="logo">
+            <img src="logo.png" alt="Eco-Folia Logo">
+            <h2>Eco-Folia</h2>
+          </div>
+          <p>Fantasia Consciente, Festa Sustentável</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/ecofoliamostra"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Links</h3>
+          <ul>
+            <li><a href="index.html#hero">Início</a></li>
+            <li><a href="index.html#fantasias">Fantasias</a></li>
+            <li><a href="trocas.html">Trocas</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contato</h3>
+          <p><i class="fas fa-envelope"></i> ecofoliaa@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Feira de Santana, Bahia, Brasil</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Eco-Folia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="trocas.js"></script>
+</body>
+</html>

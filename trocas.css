@@ -1,0 +1,1139 @@
+/* trocas.css - COM CORES UNIFICADAS */
+/* Estilos para autenticação */
+/* ESTRUTURA DO HEADER */
+body#trocas-page header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Estilos para autenticação - POSICIONAMENTO À DIREITA */
+.auth-status {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-greeting {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Estilo do botão de login */
+#loginBtnTrocas {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+#loginBtnTrocas:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+}
+
+#logoutBtnTrocas {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+}
+
+#logoutBtnTrocas:hover {
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .header-right {
+    gap: 10px;
+  }
+  
+  #loginBtnTrocas,
+  #logoutBtnTrocas {
+    padding: 8px 12px;
+  }
+}
+
+/* Modal de autenticação */
+.modal-auth .modal-content {
+  max-width: 400px;
+  padding: 0;
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--gray);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--dark);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab.active {
+  opacity: 1;
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.auth-form {
+  padding: 30px;
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.auth-form input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+
+.btn.full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Indicador de usuário não logado */
+.fantasia-card .auth-required {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+}
+
+.fantasia-card:hover .auth-required {
+  opacity: 1;
+}
+
+.auth-required-message {
+  background: var(--primary);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Override de estilos gerais para a página de trocas */
+body#trocas-page {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+body#trocas-page header {
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.1);
+}
+
+body#trocas-page .logo h1 {
+  color: var(--primary);
+}
+
+body#trocas-page nav ul li a {
+  color: var(--dark);
+}
+
+body#trocas-page nav ul li a:hover {
+  color: var(--primary);
+}
+
+body#trocas-page nav ul li a::after {
+  background-color: var(--primary);
+}
+
+body#trocas-page nav ul li a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Hero section específica para trocas */
+#sistema-trocas-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#sistema-trocas-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+  background-size: cover;
+}
+
+#sistema-trocas-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+#sistema-trocas-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+#sistema-trocas-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  opacity: 0.9;
+}
+
+/* Filtros e busca */
+.trocas-filtros-container {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(46, 139, 87, 0.12);
+  padding: 30px;
+  margin: -40px auto 40px;
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+}
+
+.search-bar-trocas {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.search-bar-trocas input {
+  flex: 1;
+  padding: 16px 24px;
+  border: 2px solid var(--gray);
+  border-radius: 50px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-bar-trocas input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+
+.search-bar-trocas button {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-bar-trocas button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.filtros-avancados {
+  border-top: 1px solid var(--gray);
+  padding-top: 25px;
+}
+
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.filtros-header h3 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.3rem;
+}
+
+.filtros-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.filtros-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filtros-group label {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.filtros-group select {
+  padding: 12px 16px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.filtros-group select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+
+/* Formulário de oferta */
+.trocas-form {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(46, 139, 87, 0.12);
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.trocas-form h3 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trocas-form h3::before {
+  content: '↯';
+  font-size: 1.8rem;
+}
+
+.trocas-form form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+
+.trocas-form button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 15px;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trocas-form button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(46, 139, 87, 0.3);
+}
+
+/* Lista de trocas */
+.trocas-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.fantasia-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(46, 139, 87, 0.12);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fantasia-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(46, 139, 87, 0.2);
+}
+
+.fantasia-img {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.fantasia-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.fantasia-card:hover .fantasia-img img {
+  transform: scale(1.05);
+}
+
+.favorito-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.favorito-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.favorito-btn.favoritado i {
+  color: var(--accent);
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.card-badge:not(.destaque) {
+  background-color: var(--primary);
+  color: white;
+}
+
+.card-badge.destaque {
+  background-color: var(--accent);
+  color: var(--dark);
+}
+
+.card-badge.new-badge {
+  background-color: #5CB85C;
+  color: white;
+}
+
+.fantasia-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fantasia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.fantasia-header h3 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 1.3rem;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.rating {
+  color: var(--gold);
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.fantasia-desc {
+  color: var(--dark);
+  opacity: 0.8;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.fantasia-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--dark);
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.fantasia-meta span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fantasia-meta i {
+  color: var(--primary);
+  width: 16px;
+}
+
+.status-troca {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.status-disponivel {
+  background-color: rgba(92, 184, 92, 0.15);
+  color: #5CB85C;
+}
+
+.status-pendente {
+  background-color: rgba(240, 173, 78, 0.15);
+  color: #F0AD4E;
+}
+
+.status-finalizada {
+  background-color: rgba(108, 117, 125, 0.15);
+  color: #6c757d;
+}
+
+.fantasia-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Paginação */
+.paginacao {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 8px;
+}
+
+.pagina-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid var(--gray);
+  background: white;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.pagina-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.pagina-btn.ativa {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Mensagem de nenhum resultado */
+.nenhum-resultado {
+  text-align: center;
+  padding: 60px 20px;
+  grid-column: 1 / -1;
+}
+
+.nenhum-resultado i {
+  font-size: 3.5rem;
+  color: var(--secondary);
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.nenhum-resultado h3 {
+  color: var(--dark);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.nenhum-resultado p {
+  color: var(--dark);
+  opacity: 0.7;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Modal de solicitação */
+.modal-solicitacao .modal-content {
+  padding: 40px 30px; 
+  border-radius: 16px;
+  background: var(--white);
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-header {
+  margin-top: 20px;
+  margin-bottom: 25px; 
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.modal-header h3 {
+  margin-left: 10px;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.close-modal {
+  font-size: 1.8rem;
+  color: var(--dark);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: var(--accent);
+}
+
+.modal-body {
+  margin-bottom: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.modal-body p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  margin-left: 10px;
+  
+}
+
+.modal-body textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.3s ease;
+}
+
+.modal-body textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.modal-footer .btn {
+  margin: 5px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-footer .btn.secondary {
+  background: transparent;
+  border: 2px solid var(--gray);
+  color: var(--dark);
+}
+
+.modal-footer .btn.secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.modal-footer .btn.primary {
+  background: var(--primary);
+  border: 2px solid var(--primary);
+  color: white;
+}
+
+.modal-footer .btn.primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Estilos para upload de imagem */
+.image-upload-container {
+    margin-top: 10px;
+}
+
+.image-upload-area {
+    border: 2px dashed var(--primary);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(46, 139, 87, 0.05);
+}
+
+.image-upload-area:hover {
+    background-color: rgba(46, 139, 87, 0.1);
+    border-color: var(--primary-dark);
+}
+
+.image-upload-area i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.image-upload-area p {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.image-upload-area span {
+    color: var(--dark);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.image-upload-area small {
+    color: var(--dark);
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+.image-preview {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.btn-remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-remove-image:hover {
+    background: var(--white);
+    transform: scale(1.1);
+}
+
+/* Estados de drag & drop */
+.image-upload-area.dragover {
+    background-color: rgba(46, 139, 87, 0.2);
+    border-color: var(--accent);
+    transform: scale(1.02);
+}
+
+.image-upload-area.uploading {
+    background-color: rgba(46, 139, 87, 0.1);
+    border-style: solid;
+}
+
+.image-upload-area.uploading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animações específicas para trocas */
+@keyframes trocasPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.fantasia-card.highlight {
+  animation: trocasPulse 1s ease;
+  box-shadow: 0 0 0 3px var(--accent);
+}
+
+/* Responsividade para página de trocas */
+@media (max-width: 768px) {
+  .trocas-filtros-container {
+    margin: -20px auto 30px;
+    padding: 20px;
+  }
+  
+  .search-bar-trocas {
+    flex-direction: column;
+  }
+  
+  .filtros-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .trocas-form form {
+    grid-template-columns: 1fr;
+  }
+  
+  .trocas-lista {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+  }
+  
+  .modal-footer .btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .trocas-lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  #sistema-trocas-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  #sistema-trocas-hero p {
+    font-size: 1.1rem;
+  }
+  
+  .fantasia-header {
+    flex-direction: column;
+  }
+  
+  .rating {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+/* Adicionar estas regras ao arquivo trocas.css existente */
+
+/* Seção de adicionar fantasia */
+.add-fantasia-section {
+  text-align: center;
+  margin: 55px 0;
+}
+
+.add-fantasia-section .btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-fantasia-section .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(46, 139, 87, 0.3);
+}
+
+/* Modal de anúncio */
+.modal-anuncio .modal-content {
+  max-width: 600px;
+  padding: 0;
+  border-radius: 16px;
+  background: var(--white);
+}
+
+.modal-anuncio .modal-header {
+  padding: 25px 30px 0;
+  border-bottom: 1px solid var(--gray);
+}
+
+.modal-anuncio .modal-body {
+  padding: 25px 30px 30px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-anuncio .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-anuncio label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.modal-anuncio input,
+.modal-anuncio select,
+.modal-anuncio textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.modal-anuncio input:focus,
+.modal-anuncio select:focus,
+.modal-anuncio textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+
+.modal-anuncio textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-anuncio .btn.full-width {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+/* Indicador de usuário não logado */
+.auth-required-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.fantasia-card:hover .auth-required-overlay {
+  opacity: 1;
+}
+
+.auth-required-message {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 80%;
+}
+
+.auth-required-message i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.auth-required-message h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.auth-required-message p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+/* Botões de ação na fantasia do usuário */
+.minhas-fantasias-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-edit {
+  background: #F0AD4E;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+}
+
+.btn-delete:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Badge para minhas fantasias */
+.card-badge.minha-fantasia {
+  background-color: #5CB85C;
+  color: white;
+}
+
+/* Responsividade para modais */
+@media (max-width: 768px) {
+  .modal-anuncio .modal-content {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .modal-anuncio .modal-body {
+    padding: 20px;
+  }
+  
+  .minhas-fantasias-actions {
+    flex-direction: column;
+  }
+}
