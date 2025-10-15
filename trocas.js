@@ -19,6 +19,53 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUser = null;
     let minhasFantasias = JSON.parse(localStorage.getItem('minhasFantasias')) || [];
 
+    // --- VERIFICAÇÃO INICIAL DE AUTENTICAÇÃO ---
+    async function initializeAuth() {
+        try {
+            // Tentar carregar o módulo de autenticação
+            const authModule = await import('./auth.js');
+            
+            // Verificar se há usuário logado no Firebase
+            if (authModule.getCurrentUser) {
+                const user = authModule.getCurrentUser();
+                if (user) {
+                    currentUser = {
+                        uid: user.uid,
+                        email: user.email,
+                    };
+                    console.log('Usuário logado encontrado:', currentUser.email);
+                }
+            }
+            
+            // Também verificar se há dados no localStorage como fallback
+            const userData = localStorage.getItem('currentUser');
+            if (userData && !currentUser) {
+                currentUser = JSON.parse(userData);
+                console.log('Usuário recuperado do localStorage:', currentUser.email);
+            }
+            
+        } catch (error) {
+            console.log('Módulo de auth não disponível, usando localStorage');
+            // Fallback para localStorage
+            const userData = localStorage.getItem('currentUser');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+            }
+        }
+    }
+
+    // --- SALVAR ESTADO DO USUÁRIO ---
+    function saveUserState(user) {
+        if (user) {
+            localStorage.setItem('currentUser', JSON.stringify({
+                uid: user.uid,
+                email: user.email,
+            }));
+        } else {
+            localStorage.removeItem('currentUser');
+        }
+    }
+
     // --- DADOS DE EXEMPLO (substituir por API real) ---
     const mockData = [
         {
@@ -187,13 +234,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('loginPassword').value;
             
             try {
-                // Importar e usar as funções de auth
                 const authModule = await import('./auth.js');
                 await authModule.signIn(email, password);
                 modal.classList.remove('show');
                 
-                // Atualizar usuário atual
-                currentUser = authModule.getCurrentUser ? authModule.getCurrentUser() : { email: email };
+                // Atualizar usuário atual E SALVAR NO LOCALSTORAGE
+                currentUser = authModule.getCurrentUser ? authModule.getCurrentUser() : { 
+                    email: email,
+                    uid: `local_${Date.now()}` // ID temporário para fallback
+                };
+                saveUserState(currentUser); // SALVAR ESTADO
                 updateUIForAuthStatus();
                 renderItems(); // Re-renderizar para atualizar botões
                 
@@ -210,13 +260,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('signupPassword').value;
             
             try {
-                // Importar e usar as funções de auth
                 const authModule = await import('./auth.js');
                 await authModule.signUp(email, password, { nome });
                 modal.classList.remove('show');
                 
-                // Atualizar usuário atual
-                currentUser = authModule.getCurrentUser ? authModule.getCurrentUser() : { email: email };
+                // Atualizar usuário atual E SALVAR NO LOCALSTORAGE
+                currentUser = authModule.getCurrentUser ? authModule.getCurrentUser() : { 
+                    email: email,
+                    uid: `local_${Date.now()}` // ID temporário para fallback
+                };
+                saveUserState(currentUser); // SALVAR ESTADO
                 updateUIForAuthStatus();
                 renderItems(); // Re-renderizar para atualizar botões
                 
@@ -554,13 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ATUALIZAR A RENDERIZAÇÃO PARA MOSTRAR STATUS DE LOGIN ---
     async function updateUIForAuthStatus() {
-        try {
-            const authModule = await import('./auth.js');
-            currentUser = authModule.getCurrentUser ? authModule.getCurrentUser() : null;
-        } catch (error) {
-            console.log('Módulo de auth não disponível, usando fallback');
-        }
-        
         const authStatus = document.getElementById('authStatus');
         if (!authStatus) return;
         
@@ -577,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             
-            // Event listener para logout
+            // Event listener para logout (MANTIDO COMO ESTAVA)
             document.getElementById('logoutBtnTrocas').addEventListener('click', async () => {
                 try {
                     const authModule = await import('./auth.js');
@@ -585,6 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         await authModule.logout();
                     }
                     currentUser = null;
+                    saveUserState(null); // Limpar do localStorage
                     updateUIForAuthStatus();
                     renderItems(); // Re-renderizar para atualizar botões
                 } catch (error) {
@@ -611,12 +658,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- INICIALIZAÇÃO ---
-    allItems = [...mockData, ...minhasFantasias];
-    createAuthModal(); // Criar modal de autenticação
-    setupAddFantasiaModal(); // Configurar modal de adicionar fantasia
-    renderItems();
-    setupEventListeners();
-    updateUIForAuthStatus(); // Atualizar UI baseada no status de autenticação
+    async function initializeApp() {
+        // Inicializar autenticação primeiro
+        await initializeAuth();
+        
+        // Depois inicializar os dados
+        allItems = [...mockData, ...minhasFantasias];
+        createAuthModal();
+        setupAddFantasiaModal();
+        renderItems();
+        setupEventListeners();
+        updateUIForAuthStatus();
+    }
+
+    // Iniciar a aplicação
+    initializeApp();
 
     // --- CONFIGURAÇÃO DE EVENT LISTENERS ---
     function setupEventListeners() {
